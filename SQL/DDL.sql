@@ -1,0 +1,9 @@
+------------------------------------------------------------
+-- DDL.sql                                                 -
+------------------------------------------------------------
+-- Instrucciones para crear esquema de la BD, restringiendo
+-- integridad referencial, de dominio, y entidad. 
+--
+-- Autor: Diego Villalpando
+-- Mail:  diego.a.villalpando@ciencias.unam.mx
+------------------------------------------------------------

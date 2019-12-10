@@ -1,0 +1,8 @@
+------------------------------------------------------------
+-- funciones.sql                                           -
+------------------------------------------------------------
+-- 5 funciones para la BD documentadas. 
+--
+-- Autor: Diego Villalpando
+-- Mail:  diego.a.villalpando@ciencias.unam.mx
+------------------------------------------------------------

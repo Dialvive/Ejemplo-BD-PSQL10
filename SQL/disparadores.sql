@@ -1,0 +1,8 @@
+------------------------------------------------------------
+-- disparadores.sql                                        -
+------------------------------------------------------------
+-- 5 disparadores para la BD documentados.
+--
+-- Autor: Diego Villalpando
+-- Mail:  diego.a.villalpando@ciencias.unam.mx
+------------------------------------------------------------
