@@ -20,6 +20,7 @@
 \usepackage{color} 
 \usepackage{wasysym}
 \usepackage{hyperref}
+\usepackage{multicol}
 
 \definecolor{codegreen}{rgb}{0.08, 0.65, 0.24} 
 \definecolor{codewine}{rgb}{0.5, 0.0, 0.5}
@@ -87,215 +88,299 @@
        
        % Índice de contenido
        \noindent \tableofcontents
-
+       
        %===========Introducción===========%
        \newpage
        \section{Introducción}
-       {
-         La empresa Transportate es una empresa de transporte particular con 150 automóviles
-         propios para transporte de usuarios ajenos a la empresa y de forma individual. La
-         empresa desea crear una base de datos que permita realizar estadísticas
-         de los viajes e implementar un nuevo sistema de recompensas para sus clientes
-         frecuentes. Se enumeran las reglas de negocio a continuación:
-       }
+               {
+                 La empresa Transportate es una empresa de transporte particular con 150 automóviles
+                 propios para transporte de usuarios ajenos a la empresa y de forma individual. La
+                 empresa desea crear una base de datos que permita realizar estadísticas
+                 de los viajes e implementar un nuevo sistema de recompensas para sus clientes
+                 frecuentes. Se enumeran las reglas de negocio a continuación:
+               }
+               
+               {\begin{itemize}
+                 \item Se deberán almacenar los datos básicos de los clientes: nombre completo, di-
+                   rección, correo(s) electrónico(s), teléfono(s), fecha de nacimiento y todos los
+                   otros datos que se considere relevante para la correcta funcionalidad del sistema.
+                   
+                 \item A cada cliente se le debe otorgar una tarjeta de cliente digital frecuente para
+                   acumular sus puntos.
+                   
+                 \item Cada punto acumulado en la tarjeta digital tendrá un valor de 10 centavos, de
+                   manera que 10 puntos se podrán utilizar como 1 peso, mismos que podrás usar
+                   para pagar viajes posteriores.
+                   
+                 \item Se desea implementar un programa para realizar distintos tipos de viajes, viajes
+                   compartidos los cuales tendrían una tarifa mas económica o viajes privados
+                   con una tarifa mas elevada.
+                   
+                 \item Adicional a esto los automóviles los quieres clasificar por categorías:
+                   \begin{enumerate}
+                   \item Luxury: Son viajes en autos lujosos, que tienen un costos de mas de 450,000.00
+                     MXM. Estos autos solo pueden ser rentados para los viajes de tipo privado.
+                   \item Lite: Son viajes en autos normales, que tienen un costos de a lo mas de
+                     449,000.00 MXM. Estos autos pueden ser rentados para los viajes de tipo
+                     privado o compartido.
+                   \item Luxury SUV: Son viajes en autos para mas de 5 pasajeros y tienen es-
+                     tos automóviles un costos de mas de 500,000.00 MXM. Estos autos solo
+                     pueden ser rentados para los viajes de tipo privado.
+                   \end{enumerate}
 
-       {\begin{itemize}
-           \item Se deberán almacenar los datos básicos de los clientes: nombre completo, di-
-             rección, correo(s) electrónico(s), teléfono(s), fecha de nacimiento y todos los
-             otros datos que se considere relevante para la correcta funcionalidad del sistema.
-           
-           \item A cada cliente se le debe otorgar una tarjeta de cliente digital frecuente para
-             acumular sus puntos.
-             
-           \item Cada punto acumulado en la tarjeta digital tendrá un valor de 10 centavos, de
-             manera que 10 puntos se podrán utilizar como 1 peso, mismos que podrás usar
-             para pagar viajes posteriores.
-             
-           \item Se desea implementar un programa para realizar distintos tipos de viajes, viajes
-             compartidos los cuales tendrían una tarifa mas económica o viajes privados
-             con una tarifa mas elevada.
-             
-           \item Adicional a esto los automóviles los quieres clasificar por categorías:
-             \begin{enumerate}
-             \item Luxury: Son viajes en autos lujosos, que tienen un costos de mas de 450,000.00
-               MXM. Estos autos solo pueden ser rentados para los viajes de tipo privado.
-             \item Lite: Son viajes en autos normales, que tienen un costos de a lo mas de
-               449,000.00 MXM. Estos autos pueden ser rentados para los viajes de tipo
-               privado o compartido.
-             \item Luxury SUV: Son viajes en autos para mas de 5 pasajeros y tienen es-
-               tos automóviles un costos de mas de 500,000.00 MXM. Estos autos solo
-               pueden ser rentados para los viajes de tipo privado.
-             \end{enumerate}
-
-           \item En el caso de los automóviles, las características que se desean almacenar en
-             cada uno son: precio de factura, placas, marca, submarca, año, color.
-
-           \item Para los viajes que se realizan, se requiere un informe detallado de cada uno
-             en donde se solicito (origen), destino final , nombre del chofer, las placas del
-             automóvil, tiempo del viaje, costo del viaje, forma de pago.
-
-           \item Se debe de registrar la forma en la que se realizo el pago del viaje, el pago pue-
-             de ser cualquiera de las siguientes combinaciones: efectivo, tarjeta de crédito,
-             débito o tarjeta digital de puntos.
-
-           \item La compra podrá ser cubierta parcial o totalmente con el saldo del monedero, sin
-             embargo, tras la compra se deberán abonar los puntos generados por ésta.
-
-           \item Para los choferes se requiere almacenar su información básica así como su in-
-             formación personal. Interesa además saber el automóvil que le toca al chofer ya
-             que le puede ir tocando diferentes automóviles por semana.
-
-           \item De acuerdo a la ubicación de las personas que solicitan un viaje es importante
-             saber a que automóvil se debiera enviar, ya que se tendría que buscar el que se
-             encuentre mas cercano.
-       \end{itemize}}
+                 \item En el caso de los automóviles, las características que se desean almacenar en
+                   cada uno son: precio de factura, placas, marca, submarca, año, color.
+                   
+                 \item Para los viajes que se realizan, se requiere un informe detallado de cada uno
+                   en donde se solicito (origen), destino final , nombre del chofer, las placas del
+                   automóvil, tiempo del viaje, costo del viaje, forma de pago.
+                   
+                 \item Se debe de registrar la forma en la que se realizo el pago del viaje, el pago pue-
+                   de ser cualquiera de las siguientes combinaciones: efectivo, tarjeta de crédito,
+                   débito o tarjeta digital de puntos.
+                   
+                 \item La compra podrá ser cubierta parcial o totalmente con el saldo del monedero, sin
+                   embargo, tras la compra se deberán abonar los puntos generados por ésta.
+                   
+                 \item Para los choferes se requiere almacenar su información básica así como su in-
+                   formación personal. Interesa además saber el automóvil que le toca al chofer ya
+                   que le puede ir tocando diferentes automóviles por semana.
+                   
+                 \item De acuerdo a la ubicación de las personas que solicitan un viaje es importante
+                   saber a que automóvil se debiera enviar, ya que se tendría que buscar el que se
+                   encuentre mas cercano.
+               \end{itemize}}
        
        %===========Diseño E/R===========%
        \section{Modelo Entidad/Relación del Caso}
 
        \subsection{Diagrama}
 
-       \includegraphics[width=15cm]{ER.png}\\
-       \centerline{Diagrama 1: Modelo Entidad-Relación del caso.}\\
+       \includegraphics[width=14.7cm]{ER.png}\\
+       \centerline{Diagrama 1: Modelo Entidad-Relación del caso.}
 
        \subsection{Justificación}
 
-       Relaciones:
-       \begin{itemize}
+       { 
+       Se consideró: que Clientes y Choferes deben ser herederos de Persona, ya que tienen muchos
+       atributos en común, y es el mismo tipo de objeto pero con la diferencia de uno ser parte de
+       la empresa. Además, que debe existir un objeto Servicio el cual relacione el pedido de los
+       Clientes con las acciones de la empresa para solucionar su pedido. También, que los atributos
+       de Tarjeta: Puntos, #Viajes, Distancia; así como los de Servicio:
+       Cantidad, y Distancia; son atributos calculados automáticamente en función de los datos
+       ingresados en Servicio.
+       }\\
 
-       \end{itemize}
-
-       Llaves:
-       \begin{itemize}
-
-       \end{itemize}
-
-       Discriminantes:
-       \begin{itemize}
-
-       \end{itemize}
-
+       { \noindent
+         \subsubsection*{Relaciones}
+         \begin{multicols}{2}
+           \begin{itemize}
+           \item Un Cliente tiene una Tarjeta.
+           \item Un Cliente tiene un Historial.
+           \item Un Cliente pide un Servicio.
+             
+           \item Un Chofer es asignado a un Automóvil.
+             
+           \item Un Automóvil es asignado a un Chofer.
+             
+           \item Un Servicio elije un Chofer.
+           \item Un Servicio muestra un Chofer.
+           \item Un Servicio muestra un Automóvil.
+           \item Un Servicio es almacenado en un Historial. 
+           \item Un Servicio abona una Tarjeta.        
+           \end{itemize}
+         \end{multicols}
+       }
+       
+       { \noindent
+         \subsubsection*{Llaves}
+         \begin{multicols}{2}
+           \begin{itemize}
+           \item Cliente: CURP.
+           \item Chofer: RFC, CURP.
+           \item Automóvil: Placas.
+           \item Servicio: ID.
+           \end{itemize}
+         \end{multicols}
+       }
+       
+       { \noindent
+         \subsubsection*{Discriminantes}
+         \begin{multicols}{2}
+           \begin{itemize}
+           \item Tarjeta: Distancia, Puntos, #Viajes.
+           \item Historial: Servicios.
+           \end{itemize}
+         \end{multicols}
+       }
+       
+       
+       
        %===========Diseño Relacional===========%
        \section{Modelo Relacional del Caso}
-
+       
        \subsection{Diagrama}
-
+       
        \includegraphics[width=15cm]{R.png}\\
-       \centerline{Diagrama 2: Modelo Relacional del caso.}\\
-
+       \centerline{Diagrama 2: Modelo Relacional del caso.}
+       
        \subsection{Justificación}
+       
+       { \noindent
+         \subsubsection*{Dependencias Funcionales}
+           \begin{itemize}
+           \item Cliente ( CURP $\rightarrow$ Nombres, Apellidos, Fecha Nacimiento )
+             
+           \item Historial ( CURP $\rightarrow$ IDS )
+             
+           \item Tarjeta ( CURP $\rightarrow$ Distancia, Puntos, #Viajes )
+             
+           \item Chofer ( RFC $\rightarrow$ Nombres, Apellidos, Fecha Nacimiento, Régimen Fiscal )
+           \item Chofer ( CURP $\rightarrow$ Nombres, Apellidos, Fecha Nacimiento )
+           \item Chofer ( RFC $\rightarrow$ CURP )
+           \item Chofer ( Calle $\rightarrow$ Delegación, Estado )
 
-       Dependencias Funcionales:
-       \begin{itemize}
+           \item Correo-E ( CURP $\rightarrow$ Dirección-E )
 
-       \end{itemize}
+           \item Teléfono ( CURP $\rightarrow$ Número )
+             
+           \item Servicio ( ID Servicio  $\rightarrow$ CURP, RFC, Placas, #Pasajeros, Clase, Metodo,
+             Latitud Origen, Latitud Destino, Longitud Origen, Longitud Destino )
+           \item Servicio ( Latitud Origen, Latitud Destino, Longitud Origen, Longitud Destino
+             $\rightarrow$ Distancia )
+           \item Servicio ( Distancia, Tiempo, Clase $\rightarrow$ Cantidad, Puntos Generados )
 
-       Llaves Primarias:
-       \begin{itemize}
+           \item Automóvil ( Placas $\rightarrow$ RFC, Modelo, Año, Color,
+           \item Automóvil ( Modelo $\rightarrow$ Marca )
+           \item Automóvil ( Modelo, Año, Color $\rightarrow$ RFC )
+           \item Automóvil ( Modelo, Año $\rightarrow$ Valor )
+             
+           \end{itemize}
+       }
 
-       \end{itemize}
+       { \noindent
+         \subsubsection*{Llaves Primarias}
+         \begin{multicols}{4}
+           \begin{itemize}
+           \item Cliente: CURP
+           \item Chofer: RFC
+           \item Servicio: IDS
+           \item Automóvil: Placas
+           \end{itemize}
+         \end{multicols}
+       }
+       
+       { \noindent
+         \subsubsection*{Llaves Secundarias}
+         \begin{multicols}{4}
+           \begin{itemize}
+           \item Historial: CURP
+           \item Tarjeta: CURP
+           \item Correo-E: CURP
+           \item Teléfono: CURP
+           \end{itemize}
+         \end{multicols}
+       }
 
-       Llaves Secundarias:
-       \begin{itemize}
-
-       \end{itemize}
-
-       Llaves Candidatas:
-       \begin{itemize}
-
-       \end{itemize}
+       { \noindent
+         \subsubsection*{Llaves Candidatas}
+         \begin{multicols}{2}
+           \begin{itemize}
+           \item Chofer: CURP
+           \end{itemize}
+         \end{multicols}
+       }
 
        %===========Diseño Relacional===========%
        \section{Dominio y Restricciones de Tablas}
-
+       
        \subsection{Clientes}
-       \begin{tabular}{|l|l l c c c|} \hline
-         Nombre              & Tipo        & Constraint     & PRIMARIA   & AJENA & NO NULO    \\ \hline
-         CURP                & char(18)    & -              & \checkmark & -     & \checkmark \\ 
-         Nombres             & text        & -              & -          & -     & \checkmark \\ 
-         Apellidos           & text        & -              & -          & -     & \checkmark \\ 
-         Fecha de nacimiento & date        & -              & -          & -     & \checkmark \\ 
-         Régimen Fiscal      & char(1)     & CHECK(F||M||E) & -          & -     & -          \\ 
-         Ubicación           & varchar(12) & -              & -          & -     & -          \\ \hline
+       \begin{tabular}{|l|l c c c c|} \hline
+         Nombre              & Tipo        & PRIMARIA   & SECUNDARIA & CANDIDATA & NO NULO    \\ \hline
+         CURP                & char(18)    & \checkmark & -          & -         & \checkmark \\ 
+         Nombres             & text        & -          & -          & -         & \checkmark \\ 
+         Apellidos           & text        & -          & -          & -         & \checkmark \\ 
+         Fecha de nacimiento & date        & -          & -          & -         & \checkmark \\ \hline
        \end{tabular}\\ \vspace{1cm}
 
        \subsection{Choferes}
-       \begin{tabular}{|l|l l c c c|} \hline
-         Nombre              & Tipo        & Constraint     & PRIMARIA   & AJENA & NO NULO    \\ \hline
-         CURP                & char(18)    & -              & \checkmark & -     & \checkmark \\ 
-         RFC                 & char(22)    & -              & \checkmark & -     & \checkmark \\ 
-         Nombres             & text        & -              & -          & -     & \checkmark \\ 
-         Apellidos           & text        & -              & -          & -     & \checkmark \\ 
-         Fecha de nacimiento & date        & -              & -          & -     & \checkmark \\ 
-         Régimen Fiscal      & char(1)     & CHECK(F||E)    & -          & -     & \checkmark \\ 
-         Calle               & text        & -              & -          & -     & \checkmark \\ 
-         Delegación          & text        & -              & -          & -     & \checkmark \\ 
-         Estado              & text        & -              & -          & -     & \checkmark \\ \hline
+       \begin{tabular}{|l|l c c c c|} \hline
+         Nombre              & Tipo        & PRIMARIA   & SECUNDARIA & CANDIDATA & NO NULO    \\ \hline
+         RFC                 & char(22)    & \checkmark & -          & -     & \checkmark \\ 
+         CURP                & char(18)    & -          & -          & \checkmark & \checkmark \\ 
+         Nombres             & text        & -          & -          & -     & \checkmark \\ 
+         Apellidos           & text        & -          & -          & -     & \checkmark \\ 
+         Fecha de nacimiento & date        & -          & -          & -     & \checkmark \\ 
+         Régimen Fiscal      & char(1)     & -          & -          & -     & \checkmark \\ 
+         Calle               & text        & -          & -          & -     & \checkmark \\ 
+         Delegación          & text        & -          & -          & -     & \checkmark \\ 
+         Estado              & text        & -          & -          & -     & \checkmark \\ \hline
        \end{tabular}\\\vspace{1cm}
 
        \subsection{Automóviles}
-       \begin{tabular}{|l|l l c c c|} \hline
-         Nombre              & Tipo        & Constraint     & PRIMARIA   & AJENA      & NO NULO    \\ \hline
-         Placas              & varchar(8)  & -              & \checkmark & -          & \checkmark \\ 
-         RFC                 & char(22)    & -              & -          & \checkmark & \checkmark \\ 
-         Marca               & text        & -              & -          & -          & \checkmark \\ 
-         Modelo              & text        & -              & -          & -          & \checkmark \\ 
-         Año                 & char(4)     & -              & -          & -          & \checkmark \\ 
-         Color               & text        & -              & -          & -          & \checkmark \\ 
-         Ubicación           & varchar(12) & -              & -          & -          & -          \\ 
-         Valor               & money       & -              & -          & -          & \checkmark \\ \hline
+       \begin{tabular}{|l|l c c c c|} \hline
+         Nombre & Tipo        & PRIMARIA   & SECUNDARIA & CANDIDATA  &  NO NULO    \\ \hline
+         Placas & varchar(8)  & \checkmark & -          & -          & \checkmark \\ 
+         RFC    & char(22)    & -          & -          & \checkmark & \checkmark \\ 
+         Marca  & text        & -          & -          & -          & \checkmark \\ 
+         Modelo & text        & -          & -          & -          & \checkmark \\ 
+         Año    & char(4)     & -          & -          & -          & \checkmark \\ 
+         Color  & text        & -          & -          & -          & \checkmark \\ 
+         Valor  & money       & -          & -          & -          & \checkmark \\ \hline
        \end{tabular}\\\vspace{1cm}
 
        \subsection{Servicios}
-       \begin{tabular}{|l|l l c c c|} \hline
-         Nombre              & Tipo        & Constraint     & PRIMARIA   & AJENA      & NO NULO    \\ \hline
-         ID\_Servicio        & big serial  & -              & \checkmark & -          & \checkmark \\ 
-         CURP                & char(18)    & -              & -          & \checkmark & \checkmark \\ 
-         RFC                 & char(22)    & -              & -          & \checkmark & \checkmark \\ 
-         Placas              & varchar(8)  & -              & -          & \checkmark & \checkmark \\ 
-         #Pasajeros          & smallint    & CHECK(8>x>0)   & -          & -          & \checkmark \\ 
-         Origen              & varchar(12) & -              & -          & -          & \checkmark \\ 
-         Destino             & varchar(12) & -              & -          & -          & \checkmark \\ 
-         Tiempo              & time        & -              & -          & -          &            \\ 
-         Distancia           & real        & CHECK(x>0)     & -          & -          & \checkmark \\ 
-         Clase               & smallint    & CHECK(5>x>0)   & -          & -          & \checkmark \\ 
-         Cantidad            & money       & -              & -          & -          & \checkmark \\ 
-         Metodo              & bool        & -              & -          & -          & \checkmark \\ 
-         Puntos\_Generados   & numeric     & CHECK(x>0)     & -          & -          & \checkmark \\ \hline
+       \begin{tabular}{|l|l c c c c|} \hline
+         Nombre           & Tipo        & PRIMARIA   & SECUNDARIA & CANDIDATA  & NO NULO    \\ \hline
+         IDS              & big serial  & \checkmark & -          & -          & \checkmark \\ 
+         CURP             & char(18)    & -          & \checkmark & -          & \checkmark \\ 
+         RFC              & char(22)    & -          & \checkmark & -          & \checkmark \\ 
+         Placas           & varchar(8)  & -          & \checkmark & -          & \checkmark \\ 
+         #Pasajeros       & char(1)     & -          & -          & -          & \checkmark \\ 
+         Latitud Origen   & float       & -          & -          & -          & \checkmark \\
+         Longitud Origen  & float       & -          & -          & -          & \checkmark \\
+         Latitud Destino  & float       & -          & -          & -          & \checkmark \\
+         Longitud Destino & float       & -          & -          & -          & \checkmark \\
+         Tiempo           & time        & -          & -          & -          &            \\ 
+         Distancia        & real        & -          & -          & -          & \checkmark \\ 
+         Clase            & char(1)     & -          & -          & -          & \checkmark \\ 
+         Cantidad         & money       & -          & -          & -          & \checkmark \\ 
+         Metodo           & bool        & -          & -          & -          & \checkmark \\ 
+         Puntos\_Generados& numeric     & -          & -          & -          & \checkmark \\ \hline
        \end{tabular}\\\vspace{1cm}
 
        \subsection{Correos-E}
-       \begin{tabular}{|l|l l c c c|} \hline
-         Nombre              & Tipo        & Constraint     & PRIMARIA   & ÚNICA      & NO NULO    \\ \hline
-         CURP                & char(18)    & -              & \checkmark & \checkmark & \checkmark \\ 
-         Direccion-E         & text        & -              & -          & \checkmark & \checkmark \\ \hline
+       \begin{tabular}{|l|l c c c c|} \hline
+         Nombre      & Tipo        & PRIMARIA   & SECUNDARIA & CANDIDATA       & NO NULO    \\ \hline
+         CURP        & char(18)    & -          & \checkmark & -               & \checkmark \\ 
+         Direccion-E & text        & -          & -          & -               & \checkmark \\ \hline
        \end{tabular}\\\vspace{1cm}
 
        \subsection{Teléfonos}
-       \begin{tabular}{|l|l l c c c|} \hline
-         Nombre              & Tipo        & Constraint     & PRIMARIA   & ÚNICA      & NO NULO    \\ \hline
-         CURP                & char(18)    & -              & \checkmark & \checkmark & \checkmark \\ 
-         Telefono            & text        & -              & -          &            & \checkmark \\ \hline
+       \begin{tabular}{|l|l c c c c|} \hline
+         Nombre    & Tipo        & PRIMARIA     & SECUNDARIA & CANDIDATA    & NO NULO    \\ \hline
+         CURP      & char(18)    & -            & \checkmark & -            & \checkmark \\ 
+         Teléfono  & text        & -            & -          &              & \checkmark \\ \hline
        \end{tabular}\\\vspace{1cm}
 
        \subsection{Historial}
-       \begin{tabular}{|l|l l c c c|} \hline
-         Nombre              & Tipo        & Constraint     & PRIMARIA   & ÚNICA      & NO NULO    \\ \hline
-         CURP                & char(18)    & -              & \checkmark & \checkmark & \checkmark \\ 
-         ID\_Servicio        & bigserial   & -              & -          & \checkmark & \checkmark \\ \hline
+       \begin{tabular}{|l|l c c c c|} \hline
+         Nombre              & Tipo        & PRIMARIA  & SECUNDARIA & CANDIDATA & NO NULO    \\ \hline
+         CURP                & char(18)    & -         & \checkmark & -         & \checkmark \\ 
+         ID\_Servicio        & bigserial   & -         & -          & -         & \checkmark \\ \hline
        \end{tabular}\\\vspace{1cm}
        
        \subsection{Tarjeta}
-       \begin{tabular}{|l|l l c c c|} \hline
-         Nombre              & Tipo        & Constraint     & PRIMARIA   & ÚNICA      & NO NULO    \\ \hline
-         CURP                & char(18)    & -              & \checkmark & \checkmark & \checkmark \\ 
-         Distancia           & real        & CHECK(x>0)     & -          &            & \checkmark \\ 
-         Puntos              & numeric     & CHECK(x>0)     & -          &            & \checkmark \\ 
-         #Viajes             & numeric     & CHECK(x>0)     & -          &            & \checkmark \\ \hline
+       \begin{tabular}{|l|l c c c c|} \hline
+         Nombre              & Tipo        & PRIMARIA   & SECUNDARIA & CANDIDATA & NO NULO    \\ \hline
+         CURP                & char(18)    & -          & \checkmark & -         & \checkmark \\ 
+         Distancia           & real        & -          & -          & -         & \checkmark \\ 
+         Puntos              & numeric     & -          & -          & -         & \checkmark \\ 
+         #Viajes             & numeric     & -          & -          & -         & \checkmark \\ \hline
        \end{tabular}\\\vspace{1cm}
        
        
-        %===========Bibliografía===========%
+       %===========Bibliografía===========%
        \newpage
            {\noindent \section*{Bibliografía}}
            
@@ -305,6 +390,6 @@
              En linea. Accesado el 10 de diciembre de 2019.
              (\url{https://www.postgresql.org/docs/current/datatype.html}).
              \par \vspace{0.3cm}
-           }\\
+           }
            
-\end{document}
+\end{document} 
