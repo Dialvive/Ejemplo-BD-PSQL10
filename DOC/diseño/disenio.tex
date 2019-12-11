@@ -9,7 +9,7 @@
 \usepackage{tikz}
 \usepackage{fancyhdr}
 %\usepackage[landscape]{geometry}
-\usepackage{amsmath,amsthm,amssymb}
+\usepackage{amsmath,amsthm,amssymb} 
 \usepackage{mathrsfs}
 \usepackage{dsfont}
 \usepackage{upgreek}
@@ -69,7 +69,7 @@
      {\scshape\Large Facultad de Ciencias, Ciudad Universitaria \par}
      {\Large Fundamentos de Bases de Datos 7063\par}
      \vspace{0.2cm}
-     {\Large\bfseries Diseño de Base de Datos Transpórtate \par}
+     {\Large\bfseries Diseño de Base de Datos Caso de Uso \par}
      \vspace{0.2cm}
      {\large\itshape Diego Alfredo Villalpando Velázquez \par \vspace{0.2cm}}
      {\large\itshape 13 de diciembre de 2019\par} \vspace{0.35cm}
@@ -166,7 +166,7 @@
        atributos en común, y es el mismo tipo de objeto pero con la diferencia de uno ser parte de
        la empresa. Además, que debe existir un objeto Servicio el cual relacione el pedido de los
        Clientes con las acciones de la empresa para solucionar su pedido. También, que los atributos
-       de Tarjeta: Puntos, #Viajes, Distancia; así como los de Servicio:
+       de Tarjeta: Puntos, $\#$Viajes, Distancia; así como los de Servicio:
        Cantidad, y Distancia; son atributos calculados automáticamente en función de los datos
        ingresados en Servicio.
        }\\
@@ -208,7 +208,7 @@
          \subsubsection*{Discriminantes}
          \begin{multicols}{2}
            \begin{itemize}
-           \item Tarjeta: Distancia, Puntos, #Viajes.
+           \item Tarjeta: Distancia, Puntos, $\#$Viajes.
            \item Historial: Servicios.
            \end{itemize}
          \end{multicols}
@@ -233,26 +233,21 @@
              
            \item Historial ( CURP $\rightarrow$ IDS )
              
-           \item Tarjeta ( CURP $\rightarrow$ Distancia, Puntos, #Viajes )
+           \item Tarjeta ( CURP $\rightarrow$ Distancia, Puntos, $\#$Viajes )
              
-           \item Chofer ( RFC $\rightarrow$ Nombres, Apellidos, Fecha Nacimiento, Régimen Fiscal )
+           \item Chofer ( RFC $\rightarrow$ CURP, Régimen Fiscal )
            \item Chofer ( CURP $\rightarrow$ Nombres, Apellidos, Fecha Nacimiento )
-           \item Chofer ( RFC $\rightarrow$ CURP )
            \item Chofer ( Calle $\rightarrow$ Delegación, Estado )
 
            \item Correo-E ( CURP $\rightarrow$ Dirección-E )
 
            \item Teléfono ( CURP $\rightarrow$ Número )
              
-           \item Servicio ( ID Servicio  $\rightarrow$ CURP, RFC, Placas, #Pasajeros, Clase, Metodo,
-             Latitud Origen, Latitud Destino, Longitud Origen, Longitud Destino )
-           \item Servicio ( Latitud Origen, Latitud Destino, Longitud Origen, Longitud Destino
-             $\rightarrow$ Distancia )
+           \item Servicio ( IDS  $\rightarrow$ CURP, RFC, Placas, $\#$Pasajeros, Clase, Metodo,
+             Latitud Origen, Latitud Destino, Longitud Origen, Longitud Destino, Tiempo )
            \item Servicio ( Distancia, Tiempo, Clase $\rightarrow$ Cantidad, Puntos Generados )
 
-           \item Automóvil ( Placas $\rightarrow$ RFC, Modelo, Año, Color,
-           \item Automóvil ( Modelo $\rightarrow$ Marca )
-           \item Automóvil ( Modelo, Año, Color $\rightarrow$ RFC )
+           \item Automóvil ( Placas $\rightarrow$ RFC, Modelo, Año, Color, RFC)
            \item Automóvil ( Modelo, Año $\rightarrow$ Valor )
              
            \end{itemize}
@@ -336,7 +331,7 @@
          CURP             & char(18)    & -          & \checkmark & -          & \checkmark \\ 
          RFC              & char(22)    & -          & \checkmark & -          & \checkmark \\ 
          Placas           & varchar(8)  & -          & \checkmark & -          & \checkmark \\ 
-         #Pasajeros       & char(1)     & -          & -          & -          & \checkmark \\ 
+         $\#$Pasajeros       & char(1)     & -          & -          & -          & \checkmark \\ 
          Latitud Origen   & float       & -          & -          & -          & \checkmark \\
          Longitud Origen  & float       & -          & -          & -          & \checkmark \\
          Latitud Destino  & float       & -          & -          & -          & \checkmark \\
@@ -376,7 +371,7 @@
          CURP                & char(18)    & -          & \checkmark & -         & \checkmark \\ 
          Distancia           & real        & -          & -          & -         & \checkmark \\ 
          Puntos              & numeric     & -          & -          & -         & \checkmark \\ 
-         #Viajes             & numeric     & -          & -          & -         & \checkmark \\ \hline
+         $\#$Viajes             & numeric     & -          & -          & -         & \checkmark \\ \hline
        \end{tabular}\\\vspace{1cm}
        
        
