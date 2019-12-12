@@ -393,13 +393,13 @@ ALTER TABLE cliente
 ALTER TABLE cliente
     ADD CONSTRAINT ck_cliente_nombres
         CHECK (
-            nombres ~ '\w' AND nombres !~ '\d'
+            nombres ~ '.+\w+.+' AND nombres !~ '.+\d+.+'
         );
 
 ALTER TABLE cliente
     ADD CONSTRAINT ck_cliente_apellidos
         CHECK (
-            apellidos ~ '\w' AND apellidos !~ '\d'
+            apellidos ~ '.+\w+.+' AND apellidos !~ '.+\d+.+'
         );
 ALTER TABLE cliente
     ADD CONSTRAINT ck_cliente_fecha_nacimiento
@@ -418,9 +418,9 @@ ALTER TABLE cliente_correo_e
 ALTER TABLE cliente_telefono
     ADD CONSTRAINT ck_cliente_telefono_numero
         CHECK (
-            numero ~ '\d' 
-            AND numero !~ '[[:alpha:]]' 
-            AND numero !~ '\s' 
+            numero ~ '.+\d+.+' 
+            AND numero !~ '.+^[[:alpha:]]+.+' 
+            AND numero !~ '.+\s+.+' 
         );
 
 -----TARJETA
@@ -452,13 +452,13 @@ ALTER TABLE chofer_persona
 ALTER TABLE chofer_persona
     ADD CONSTRAINT ck_chofer_persona_nombres
         CHECK (
-            nombres ~ '\w' AND nombres !~ '\d'
+            nombres ~ '.+\w+.+' AND nombres !~ '.+\d+.+'
         );
 
 ALTER TABLE chofer_persona
     ADD CONSTRAINT ck_chofer_persona_apellidos
         CHECK (
-            apellidos ~ '\w' AND apellidos !~ '\d'
+            apellidos ~ '.+\w+.+' AND apellidos !~ '.+\d+.+'
         );
 ALTER TABLE chofer_persona
     ADD CONSTRAINT ck_chofer_persona_fecha_nacimiento
@@ -477,9 +477,9 @@ ALTER TABLE chofer_correo_e
 ALTER TABLE chofer_telefono
     ADD CONSTRAINT ck_chofer_telefono_numero
         CHECK (
-            numero ~ '\d' 
-            AND numero !~ '[[:alpha:]]' 
-            AND numero !~ '\s' 
+            numero ~ '.+\d+.+' 
+            AND numero !~ '+^[[:alpha:]]+.+' 
+            AND numero !~ '.+\s+.+' 
         );
 
 -----CHOFER FISCAL
@@ -501,70 +501,70 @@ ALTER TABLE chofer_fiscal
 ALTER TABLE chofer_ref
     ADD CONSTRAINT ck_chofer_ref_calle
         CHECK (
-            calle ~ '\w'
+            calle ~ '.+\w+.+'
         );
 
 -----CHOFER DIRECCION
 ALTER TABLE chofer_direccion
     ADD CONSTRAINT ck_chofer_direccion_delegacion
         CHECK (
-            delegacion ~ '\w'
-            AND delegacion !~ 'd'
+            delegacion ~ '.+\w+.+'
+            AND delegacion !~ '.+\d+.+'
         );
 
 ALTER TABLE chofer_direccion
     ADD CONSTRAINT ck_chofer_direccion_estado
         CHECK (
-            estado ~ '\w'
-            AND estado !~ 'd'
+            estado ~ '.+\w+.+'
+            AND estado !~ '.+\d+.+'
         );
 
 -----AUTOMOVIL CUALIDAD
 ALTER TABLE automovil_cualidad
     ADD CONSTRAINT ck_automovil_cualidad_placas
         CHECK (
-            placas ~ '\w'
-            AND placas !~ '\d'
+            placas ~ '.+\w+.+'
+            AND placas !~ '.+\d+.+'
         );
 
 ALTER TABLE automovil_cualidad
     ADD CONSTRAINT ck_automovil_cualidad_marca
         CHECK (
-            marca ~ '\w'
-            AND marca !~ '\d'
+            marca ~ '.+\w+.+'
+            AND marca !~ '.+\d+.+'
         );
 
 ALTER TABLE automovil_cualidad
     ADD CONSTRAINT ck_automovil_cualidad_modelo
         CHECK (
-            modelo ~ '\w'
+            modelo ~ '.+\w+.+'
         );
 
 ALTER TABLE automovil_cualidad
     ADD CONSTRAINT ck_automovil_cualidad_anio
         CHECK (
-            anio !~ '\d'
+            anio !~ '.+\d+.+'
             AND CAST (anio AS NUMERIC) >= 2000
         );
 
 ALTER TABLE automovil_cualidad
     ADD CONSTRAINT ck_automovil_cualidad_color
         CHECK (
-            color ~ '\w'
-            AND color !~ '\d'
+            color ~ '.+\w+.+'
+            AND color !~ '.+\d+.+'
         );
 
 -----AUTOMOVIL VALOR
 ALTER TABLE automovil_valor
     ADD CONSTRAINT ck_automovil_valor_modelo
         CHECK (
-            modelo ~ '\w'
+            modelo ~ '.+\w+.+'
         );
 
 ALTER TABLE automovil_cualidad
     ADD CONSTRAINT ck_automovil_valor_anio
         CHECK (
-            anio !~ '\d'
+            anio !~ '.+\d+.+'
             AND CAST (anio AS NUMERIC) >= 2000
         );
 
