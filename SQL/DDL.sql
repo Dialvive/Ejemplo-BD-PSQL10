@@ -521,114 +521,145 @@ ALTER TABLE chofer_direccion
 
 -----AUTOMOVIL CUALIDAD
 ALTER TABLE automovil_cualidad
-    ADD CONSTRAINT ck_automovil_placas
+    ADD CONSTRAINT ck_automovil_cualidad_placas
         CHECK (
             placas ~ '\w'
             AND placas !~ '\d'
         );
 
 ALTER TABLE automovil_cualidad
-    ADD CONSTRAINT ck_automovil_marca
+    ADD CONSTRAINT ck_automovil_cualidad_marca
         CHECK (
             marca ~ '\w'
             AND marca !~ '\d'
         );
 
 ALTER TABLE automovil_cualidad
-    ADD CONSTRAINT ck_automovil_modelo
+    ADD CONSTRAINT ck_automovil_cualidad_modelo
         CHECK (
             modelo ~ '\w'
         );
 
 ALTER TABLE automovil_cualidad
-    ADD CONSTRAINT ck_automovil_anio
+    ADD CONSTRAINT ck_automovil_cualidad_anio
         CHECK (
             anio !~ '\d'
+            AND CAST (anio AS NUMERIC) >= 2000
         );
 
 ALTER TABLE automovil_cualidad
-    ADD CONSTRAINT ck_automovil_color
+    ADD CONSTRAINT ck_automovil_cualidad_color
         CHECK (
             color ~ '\w'
             AND color !~ '\d'
         );
 
 -----AUTOMOVIL VALOR
-ALTER TABLE
-    ADD CONSTRAINT ck_
+ALTER TABLE automovil_valor
+    ADD CONSTRAINT ck_automovil_valor_modelo
         CHECK (
+            modelo ~ '\w'
+        );
 
+ALTER TABLE automovil_cualidad
+    ADD CONSTRAINT ck_automovil_valor_anio
+        CHECK (
+            anio !~ '\d'
+            AND CAST (anio AS NUMERIC) >= 2000
+        );
+
+ALTER TABLE automovil_cualidad
+    ADD CONSTRAINT ck_automovil_valor_valor
+        CHECK (
+            CAST (valor AS NUMERIC) > 0
         );
 
 -----SERVICIO
-ALTER TABLE
-    ADD CONSTRAINT ck_
+ALTER TABLE servicio
+    ADD CONSTRAINT ck_servicio_num_pasajeros
         CHECK (
-
+            CASE num_pasajeros
+                WHEN num_pasajeros <= 4 
+                    AND num_pasajeros > 0
+                    AND clase = 'D' OR clase = 'C' OR clase = 'B'
+                    THEN TRUE
+                WHEN num_pasajeros <= 9
+                    AND num_pasajeros >= 5
+                    AND clase = 'A'
+                    THEN TRUE
+                ELSE FALSE
         );
 
-ALTER TABLE
-    ADD CONSTRAINT ck_
+ALTER TABLE servicio
+    ADD CONSTRAINT ck_servicio_latitud_origen
         CHECK (
-
+            latitud_origen >= -90 
+            AND latitud_origen <= 90
         );
 
-ALTER TABLE
-    ADD CONSTRAINT ck_
+ALTER TABLE servicio
+    ADD CONSTRAINT ck_servicio_longitud_origen
         CHECK (
-
+            longitud_origen >= -180
+            AND longitud_origen <= 180
         );
 
-ALTER TABLE
-    ADD CONSTRAINT ck_
+ALTER TABLE servicio
+    ADD CONSTRAINT ck_servicio_latitud_destino
         CHECK (
-
+            latitud_destino >= -90 
+            AND latitud_destino <= 90
         );
 
-ALTER TABLE
-    ADD CONSTRAINT ck_
+ALTER TABLE servicio
+    ADD CONSTRAINT ck_servicio_longitud_destino
         CHECK (
-
+            longitud_destino >= -180
+            AND longitud_destino <= 180
         );
 
-ALTER TABLE
-    ADD CONSTRAINT ck_
+ALTER TABLE servicio
+    ADD CONSTRAINT ck_servicio_tiempo
         CHECK (
-
+            CASE
+                WHEN EXTRACT(MINUTE FROM tiempo) = 0
+                    AND EXTRACT(HOUR FROM tiempo) > 0
+                    THEN TRUE
+                WHEN EXTRACT(MINUTE FROM tiempo) > 0
+                    AND EXTRACT(HOUR FROM tiempo) >= 0
+                    THEN TRUE
+                ELSE FALSE 
         );
 
-ALTER TABLE
-    ADD CONSTRAINT ck_
+ALTER TABLE servicio
+    ADD CONSTRAINT ck_servicio_distancia
         CHECK (
-
+            distancia >= 0
         );
 
-ALTER TABLE
-    ADD CONSTRAINT ck_
+ALTER TABLE servicio
+    ADD CONSTRAINT ck_servicio_clase
         CHECK (
-
+            clase = 'D' --Lite compartido
+            OR clase = 'C' --Lite
+            OR clase = 'B' --Luxury
+            OR clase = 'A' --Luxory SUV
         );
 
-ALTER TABLE
-    ADD CONSTRAINT ck_
+ALTER TABLE servicio
+    ADD CONSTRAINT ck_servicio_cantidad
         CHECK (
-
+            cantidad > 0 
         );
 
-ALTER TABLE
-    ADD CONSTRAINT ck_
+ALTER TABLE servicio
+    ADD CONSTRAINT ck_servicio_metodo
         CHECK (
-
+            metodo = TRUE OR metodo = FALSE
         );
 
-ALTER TABLE
-    ADD CONSTRAINT ck_
+ALTER TABLE servicio
+    ADD CONSTRAINT ck_servicio_puntos_generados
         CHECK (
-
-        );
-
-ALTER TABLE
-    ADD CONSTRAINT ck_
-        CHECK (
-
+            puntos_generados >= 1
         );
