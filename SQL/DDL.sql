@@ -12,34 +12,32 @@ CREATE DATABASE Transportate;
 COMMENT ON DATABASE Transportate IS 
 'Base de datos sobre la empresa ficticia Transpórtate';
 
-------------------------------------------------------------
+------------------------------------------------------------ OK
 --ESTRUCURA DE TABLAS EN LA BASE DE DATOS ------------------
 ------------------------------------------------------------
 
 ----TABLAS CON LLAVES PRIMARIAS
 
 --CLIENTES
-CREATE TABLE clientes (
-    PRIMARY KEY (curp),
+CREATE TABLE cliente (
     curp                CHAR(18)    NOT NULL,
  	nombres             TEXT	 	NOT NULL,
 	apellidos	        TEXT		NOT NULL,
 	fecha_nacimiento    DATE		NOT NULL
 );
-COMMENT ON TABLE clientes IS
+COMMENT ON TABLE cliente IS
 'Tabla que almacena datos de clientes de la empresa.';
-COMMENT ON COLUMN clientes.curp IS
+COMMENT ON COLUMN cliente.curp IS
 'Clave Única de Registro de Población. [Llave Primaria]';
-COMMENT ON COLUMN clientes.nombres IS
+COMMENT ON COLUMN cliente.nombres IS
 'Nombre(s) de pila.';
-COMMENT ON COLUMN clientes.apellidos IS
+COMMENT ON COLUMN cliente.apellidos IS
 'Ambos apellidos.';
-COMMENT ON COLUMN clientes.fecha_nacimiento IS
+COMMENT ON COLUMN cliente.fecha_nacimiento IS
 'Fecha de nacimiento en formato YYYY-MM-DD.';
 
 --C2.1 O CHOFER PERSONA
 CREATE TABLE chofer_persona (
-    PRIMARY KEY (curp),
     curp                CHAR(18)    NOT NULL,
  	nombres             TEXT	 	NOT NULL,
 	apellidos	        TEXT		NOT NULL,
@@ -58,7 +56,6 @@ COMMENT ON COLUMN chofer_persona.fecha_nacimiento IS
 
 --C2.2 O CHOFER FISCAL
 CREATE TABLE chofer_fiscal (
-    PRIMARY KEY (rfc),
     rfc                 CHAR(22)    NOT NULL,
     curp                CHAR(18)    NOT NULL,
     regimen_fiscal      CHAR(1)     NOT NULL
@@ -75,7 +72,6 @@ Persona Física con Capacidad Empresarial := E.';
 
 --A1 o AUTOMÓVIL CUALIDAD
 CREATE TABLE automovil_cualidad (
-    PRIMARY KEY (placas),
     placas              VARCHAR(8)  NOT NULL,
     rfc                 CHAR(22)    NOT NULL,
     modelo              TEXT        NOT NULL,
@@ -102,14 +98,13 @@ COMMENT ON COLUMN automovil_cualidad.color IS
 
 --SERVICIO
 CREATE TABLE servicio (
-    PRIMARY KEY (ids),
     ids                 BIGSERIAL   NOT NULL,
     curp                CHAR(18)    NOT NULL,
     rfc                 CHAR(22)    NOT NULL,
     placas              VARCHAR(8)  NOT NULL,
     num_pasajeros       CHAR(1)     NOT NULL,
     latitud_origen      float       NOT NULL,
-    longitud_orgigen    float       NOT NULL,
+    longitud_origen    float       NOT NULL,
     latitud_destino     float       NOT NULL,
     longitud_destino    float       NOT NULL,
     tiempo              TIME        NOT NULL,
@@ -166,7 +161,7 @@ COMMENT ON COLUMN servicio.puntos_generados IS
 'Cantidad de puntos abonados a la tarjeta del cliente en función
 de la cantidad.';
 
-------------------------------------------------------------
+------------------------------------------------------------ OK
 ----TABLAS CON LLAVES SECUNDARIAS SIN LLAVES PRIMARIAS -----
 ------------------------------------------------------------
 
@@ -175,13 +170,13 @@ CREATE TABLE cliente_telefono (
     curp                CHAR(18)    NOT NULL,
     numero              varchar(13) NOT NULL
 );
-COMMENT ON TABLE telefono IS
+COMMENT ON TABLE cliente_telefono IS
 'Tabla que almacena los números telefónicos de 
 clientes y choferes.';
-COMMENT ON COLUMN telefono.curp IS
+COMMENT ON COLUMN cliente_telefono.curp IS
 'Clave Única de Registro de Población de clientes o choferes.
 [Llave Secundaria]';
-COMMENT ON COLUMN telefono.numero IS
+COMMENT ON COLUMN cliente_telefono.numero IS
 'Número telefónico de clientes o choferes.';
 
 --CLIENTE CORREO-E
@@ -189,13 +184,13 @@ CREATE TABLE cliente_correo_e (
     curp                CHAR(18)    NOT NULL,
     direccion           TEXT        NOT NULL
 );
-COMMENT ON TABLE correo_e IS
+COMMENT ON TABLE cliente_correo_e IS
 'Tabla que almacena las direcciones de correo electrónico de 
 clientes.';
-COMMENT ON COLUMN correo_e.curp IS
+COMMENT ON COLUMN cliente_correo_e.curp IS
 'Clave Única de Registro de Población de clientes.
 [Llave Secundaria]';
-COMMENT ON COLUMN correo_e.direccion IS
+COMMENT ON COLUMN cliente_correo_e.direccion IS
 'Dirección de correo electrónico de clientes.';
 
 --CHOFER TELEFONO
@@ -203,12 +198,12 @@ CREATE TABLE chofer_telefono (
     curp                CHAR(18)    NOT NULL,
     numero              varchar(13) NOT NULL
 );
-COMMENT ON TABLE telefono IS
+COMMENT ON TABLE chofer_telefono IS
 'Tabla que almacena los números telefónicos de choferes.';
-COMMENT ON COLUMN telefono.curp IS
+COMMENT ON COLUMN chofer_telefono.curp IS
 'Clave Única de Registro de Población de choferes.
 [Llave Secundaria]';
-COMMENT ON COLUMN telefono.numero IS
+COMMENT ON COLUMN chofer_telefono.numero IS
 'Número telefónico de choferes.';
 
 --CHOFER CORREO-E
@@ -216,13 +211,13 @@ CREATE TABLE chofer_correo_e (
     curp                CHAR(18)    NOT NULL,
     direccion           TEXT        NOT NULL
 );
-COMMENT ON TABLE correo_e IS
+COMMENT ON TABLE chofer_correo_e IS
 'Tabla que almacena las direcciones de correo electrónico de 
 choferes.';
-COMMENT ON COLUMN correo_e.curp IS
+COMMENT ON COLUMN chofer_correo_e.curp IS
 'Clave Única de Registro de Población de choferes.
 [Llave Secundaria]';
-COMMENT ON COLUMN correo_e.direccion IS
+COMMENT ON COLUMN chofer_correo_e.direccion IS
 'Dirección de correo electrónico de choferes.';
 
 --C3 o CHOFER DIRECCION
@@ -309,11 +304,44 @@ COMMENT ON COLUMN historial.ids IS
 'Identificador serializable único de un servicio. 
 [Llave Secundaria]';
 
+------------------------------------------------------------ OK
+--ASIGNACIÓN DE LLAVES PRIMARIAS ---------------------------
 ------------------------------------------------------------
+
+ALTER TABLE cliente
+    ADD CONSTRAINT pk_cliente_curp
+        PRIMARY KEY (curp);
+
+ALTER TABLE chofer_persona
+    ADD CONSTRAINT pk_chofer_persona_curp
+        PRIMARY KEY (curp);
+
+ALTER TABLE chofer_fiscal
+    ADD CONSTRAINT pk_chofer_fiscal_rfc
+        PRIMARY KEY (rfc);
+
+ALTER TABLE automovil_cualidad
+    ADD CONSTRAINT pk_automovil_cualidad_placas
+        PRIMARY KEY (placas);
+
+ALTER TABLE servicio
+    ADD CONSTRAINT pk_servicio_ids
+        PRIMARY KEY (ids);
+
+
+------------------------------------------------------------ OK
+--ASIGNACIÓN DE LLAVES CANDIDATAS ---------------------------
+------------------------------------------------------------
+
+ALTER TABLE chofer_ref
+    ADD CONSTRAINT tk_chofer_ref_calle
+        UNIQUE (calle);
+
+------------------------------------------------------------ OK
 --ASIGNACIÓN DE LLAVES SECUNDARIAS -------------------------
 ------------------------------------------------------------
 
-----REFERENCIAS A CLIENTE
+----REFERENCIAS A CLIENTE OK
 ALTER TABLE cliente_correo_e 
     ADD CONSTRAINT fk_cliente_correo_e_curp
         FOREIGN KEY (curp)      REFERENCES cliente (curp);
@@ -334,7 +362,7 @@ ALTER TABLE servicio
     ADD CONSTRAINT fk_servicio_curp
         FOREIGN KEY (curp)      REFERENCES cliente (curp);
 
-----REFERENCIAS A CHOFER PERSONA
+----REFERENCIAS A CHOFER PERSONA OK
 ALTER TABLE chofer_correo_e 
     ADD CONSTRAINT fk_chofer_correo_e_curp
         FOREIGN KEY (curp)      REFERENCES chofer_persona (curp);
@@ -347,7 +375,7 @@ ALTER TABLE chofer_fiscal
     ADD CONSTRAINT fk_chofer_fiscal_curp
         FOREIGN KEY (curp)      REFERENCES chofer_persona (curp);
 
-----REFERENCIAS A CHOFER FISCAL
+----REFERENCIAS A CHOFER FISCAL OK
 ALTER TABLE servicio
     ADD CONSTRAINT fk_servicio_rfc
         FOREIGN KEY (rfc)       REFERENCES chofer_fiscal (rfc);
@@ -360,30 +388,30 @@ ALTER TABLE chofer_ref
     ADD CONSTRAINT fk_chofer_ref_rfc
         FOREIGN KEY (rfc)       REFERENCES chofer_fiscal (rfc);
 
-----REFERENCIAS A CHOFER REF
+----REFERENCIAS A CHOFER REF OK
 ALTER TABLE chofer_direccion
     ADD CONSTRAINT fk_chofer_direccion_calle
         FOREIGN KEY (calle)     REFERENCES chofer_ref (calle);
 
-----REFERENCIAS A AUTOMÓVIL CUALIDAD
+----REFERENCIAS A AUTOMÓVIL CUALIDAD OK
 ALTER TABLE servicio
     ADD CONSTRAINT fk_servicio_placas
         FOREIGN KEY (placas)    REFERENCES automovil_cualidad (placas);
 
 ALTER TABLE automovil_valor
     ADD CONSTRAINT fk_automovil_valor_placas
-        FOREIGN KEY (placas)    REFERENCES chofer_fiscal;
+        FOREIGN KEY (placas)    REFERENCES automovil_cualidad (placas);
 
-----REFERENCIAS A SERVICIO
+----REFERENCIAS A SERVICIO OK
 ALTER TABLE historial 
     ADD CONSTRAINT fk_historial_ids
         FOREIGN KEY (ids)       REFERENCES servicio (ids);
 
-------------------------------------------------------------
+------------------------------------------------------------ OK
 --ASIGNACIÓN DE CHECKS--------------------------------------
 ------------------------------------------------------------
 
------CLIENTE
+-----CLIENTE OK
 ALTER TABLE cliente
     ADD CONSTRAINT ck_cliente_curp
         CHECK (
@@ -407,14 +435,14 @@ ALTER TABLE cliente
             fecha_nacimiento >'1900-01-01'
         );
 
------CLIENTE CORREO E
+-----CLIENTE CORREO E OK
 ALTER TABLE cliente_correo_e
     ADD CONSTRAINT ck_cliente_correo_e_direccion
         CHECK (
             direccion ~* '^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+[.][A-Za-z]+$'
         );
 
------CLIENTE TELEFONO
+-----CLIENTE TELEFONO OK
 ALTER TABLE cliente_telefono
     ADD CONSTRAINT ck_cliente_telefono_numero
         CHECK (
@@ -423,7 +451,7 @@ ALTER TABLE cliente_telefono
             AND numero !~ '.+\s+.+' 
         );
 
------TARJETA
+-----TARJETA OK
 ALTER TABLE tarjeta
     ADD CONSTRAINT ck_tarjeta_distancia
         CHECK (
@@ -442,7 +470,7 @@ ALTER TABLE tarjeta
             num_viajes >= 0
         );
 
------CHOFER PERSONA
+-----CHOFER PERSONA OK
 ALTER TABLE chofer_persona
     ADD CONSTRAINT ck_cliente_curp
         CHECK (
@@ -466,14 +494,14 @@ ALTER TABLE chofer_persona
             fecha_nacimiento >'1900-01-01'
         );
 
------CHOFER CORREO E
+-----CHOFER CORREO E OK
 ALTER TABLE chofer_correo_e
     ADD CONSTRAINT ck_chofer_correo_e_direccion
         CHECK (
             direccion ~* '^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+[.][A-Za-z]+$'
         );
 
------CHOFER TELEFONO
+-----CHOFER TELEFONO OK
 ALTER TABLE chofer_telefono
     ADD CONSTRAINT ck_chofer_telefono_numero
         CHECK (
@@ -482,7 +510,7 @@ ALTER TABLE chofer_telefono
             AND numero !~ '.+\s+.+' 
         );
 
------CHOFER FISCAL
+-----CHOFER FISCAL OK
 ALTER TABLE chofer_fiscal
     ADD CONSTRAINT ck_chofer_fiscal_rfc
         CHECK (
@@ -497,14 +525,14 @@ ALTER TABLE chofer_fiscal
             OR regimen_fiscal = 'E'
         );
        
------CHOFER REF
+-----CHOFER REF OK
 ALTER TABLE chofer_ref
     ADD CONSTRAINT ck_chofer_ref_calle
         CHECK (
             calle ~ '.+\w+.+'
         );
 
------CHOFER DIRECCION
+-----CHOFER DIRECCION OK
 ALTER TABLE chofer_direccion
     ADD CONSTRAINT ck_chofer_direccion_delegacion
         CHECK (
@@ -519,7 +547,7 @@ ALTER TABLE chofer_direccion
             AND estado !~ '.+\d+.+'
         );
 
------AUTOMOVIL CUALIDAD
+-----AUTOMOVIL CUALIDAD OK
 ALTER TABLE automovil_cualidad
     ADD CONSTRAINT ck_automovil_cualidad_placas
         CHECK (
@@ -554,40 +582,41 @@ ALTER TABLE automovil_cualidad
             AND color !~ '.+\d+.+'
         );
 
------AUTOMOVIL VALOR
+-----AUTOMOVIL VALOR OK
 ALTER TABLE automovil_valor
     ADD CONSTRAINT ck_automovil_valor_modelo
         CHECK (
             modelo ~ '.+\w+.+'
         );
 
-ALTER TABLE automovil_cualidad
+ALTER TABLE automovil_valor
     ADD CONSTRAINT ck_automovil_valor_anio
         CHECK (
             anio !~ '.+\d+.+'
             AND CAST (anio AS NUMERIC) >= 2000
         );
 
-ALTER TABLE automovil_cualidad
+ALTER TABLE automovil_valor
     ADD CONSTRAINT ck_automovil_valor_valor
         CHECK (
             CAST (valor AS NUMERIC) > 0
         );
 
------SERVICIO
+-----SERVICIO OK
 ALTER TABLE servicio
     ADD CONSTRAINT ck_servicio_num_pasajeros
         CHECK (
-            CASE num_pasajeros
-                WHEN num_pasajeros <= 4 
-                    AND num_pasajeros > 0
+            CASE 
+                WHEN CAST (num_pasajeros AS NUMERIC) <= 4 
+                    AND CAST (num_pasajeros AS NUMERIC) > 0
                     AND clase = 'D' OR clase = 'C' OR clase = 'B'
                     THEN TRUE
-                WHEN num_pasajeros <= 9
-                    AND num_pasajeros >= 5
+                WHEN CAST (num_pasajeros AS NUMERIC) <= 9
+                    AND CAST (num_pasajeros AS NUMERIC) >= 5
                     AND clase = 'A'
                     THEN TRUE
                 ELSE FALSE
+            END
         );
 
 ALTER TABLE servicio
@@ -628,7 +657,8 @@ ALTER TABLE servicio
                 WHEN EXTRACT(MINUTE FROM tiempo) > 0
                     AND EXTRACT(HOUR FROM tiempo) >= 0
                     THEN TRUE
-                ELSE FALSE 
+                ELSE FALSE
+            END
         );
 
 ALTER TABLE servicio
@@ -649,7 +679,7 @@ ALTER TABLE servicio
 ALTER TABLE servicio
     ADD CONSTRAINT ck_servicio_cantidad
         CHECK (
-            cantidad > 0 
+            CAST (cantidad AS NUMERIC) > 0 
         );
 
 ALTER TABLE servicio
