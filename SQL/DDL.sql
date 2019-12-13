@@ -151,7 +151,8 @@ COMMENT ON COLUMN servicio.distancia IS
 terminó el servicio.';
 COMMENT ON COLUMN servicio.clase IS
 'Clase del servicio en función del tipo de viaje solicitado y
-las características del vehículo.';
+las características del vehículo. [c]: compartido [n]: lite
+[l]: luxory [s]: luxurySUV';
 COMMENT ON COLUMN servicio.cantidad IS
 'Cantidad pagada por el cliente, generada en función de la
 distancia, tiempo, y clase.';
