@@ -26,10 +26,13 @@ BEGIN
         punt    NUMERIC     = fn_calcular_puntos(
                     dist,
                     cant);
+        r       CHAR(22);
     BEGIN
+        SELECT r = automovil_cualidad(rfc) FROM automovil_cualidad WHERE automovil_cualidad.placas = plac LIMIT 1;
         UPDATE servicio
         SET 
             placas = plac,
+            rfc = r,
             distancia = dis,
             cantidad = cant,
             puntos_generados = punt
