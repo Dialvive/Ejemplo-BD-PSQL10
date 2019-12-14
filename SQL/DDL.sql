@@ -76,7 +76,7 @@ CREATE TABLE automovil_cualidad (
     rfc                 CHAR(22)    NOT NULL,
     modelo              TEXT        NOT NULL,
     marca               TEXT        NOT NULL,
-    anio                char(4)     NOT NULL,
+    anio                NUMERIC     NOT NULL,
     color               TEXT        NOT NULL
 );
 COMMENT ON TABLE automovil_cualidad IS
@@ -100,19 +100,19 @@ COMMENT ON COLUMN automovil_cualidad.color IS
 CREATE TABLE servicio (
     ids                 BIGSERIAL   NOT NULL,
     curp                CHAR(18)    NOT NULL,
-    rfc                 CHAR(22)    NOT NULL,
-    placas              VARCHAR(8)  NOT NULL,
+    rfc                 CHAR(22),
+    placas              VARCHAR(8),
     num_pasajeros       CHAR(1)     NOT NULL,
     latitud_origen      float       NOT NULL,
     longitud_origen    float       NOT NULL,
     latitud_destino     float       NOT NULL,
     longitud_destino    float       NOT NULL,
     tiempo              TIME        NOT NULL,
-    distancia           real        NOT NULL,
+    distancia           real,
     clase               CHAR(1)     NOT NULL,
-    cantidad            MONEY       NOT NULL,
+    cantidad            MONEY,
     metodo              BOOLEAN     NOT NULL,
-    puntos_generados    NUMERIC     NOT NULL
+    puntos_generados    NUMERIC
 );
 COMMENT ON TABLE servicio IS
 'Tabla que almacena datos de cada servicio -viaje- que es realizado
@@ -253,7 +253,7 @@ COMMENT ON COLUMN chofer_ref.calle IS
 CREATE TABLE automovil_valor (
     placas              VARCHAR(8)  NOT NULL,
     modelo              TEXT        NOT NULL,
-    anio                CHAR(4)     NOT NULL,
+    anio                NUMERIC     NOT NULL,
     valor               MONEY       NOT NULL              
 );
 COMMENT ON TABLE automovil_valor IS
@@ -416,31 +416,31 @@ ALTER TABLE historial
 ALTER TABLE cliente
     ADD CONSTRAINT ck_cliente_curp
         CHECK (
-            curp ~ '^[A-Z]{1}[AEIOU]{1}[A-Z]{2}[0-9]{2}(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[HM]{1}(AS|BC|BS|CC|CS|CH|CL|CM|DF|DG|GT|GR|HG|JC|MC|MN|MS|NT|NL|OC|PL|QT|QR|SP|SL|SR|TC|TS|TL|VZ|YN|ZS|NE)[B-DF-HJ-NP-TV-Z]{3}[0-9A-Z]{1}[0-9]{1}$'
+            curp ~ '\w'
         );
 
 ALTER TABLE cliente
     ADD CONSTRAINT ck_cliente_nombres
         CHECK (
-            nombres ~ '.+\w+.+' AND nombres !~ '.+\d+.+'
+            nombres ~ '\w' AND nombres !~ '.+\d+.+'
         );
 
 ALTER TABLE cliente
     ADD CONSTRAINT ck_cliente_apellidos
         CHECK (
-            apellidos ~ '.+\w+.+' AND apellidos !~ '.+\d+.+'
+            apellidos ~ '\w' AND apellidos !~ '.+\d+.+'
         );
 ALTER TABLE cliente
     ADD CONSTRAINT ck_cliente_fecha_nacimiento
         CHECK (
-            fecha_nacimiento >'1900-01-01'
+            fecha_nacimiento > '1900-01-01'
         );
 
 -----CLIENTE CORREO E OK
 ALTER TABLE cliente_correo_e
     ADD CONSTRAINT ck_cliente_correo_e_direccion
         CHECK (
-            direccion ~* '^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+[.][A-Za-z]+$'
+            direccion ~* '[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+[.][A-Za-z]+'
         );
 
 -----CLIENTE TELEFONO OK
@@ -475,19 +475,19 @@ ALTER TABLE tarjeta
 ALTER TABLE chofer_persona
     ADD CONSTRAINT ck_cliente_curp
         CHECK (
-            curp ~ '^[A-Z]{1}[AEIOU]{1}[A-Z]{2}[0-9]{2}(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[HM]{1}(AS|BC|BS|CC|CS|CH|CL|CM|DF|DG|GT|GR|HG|JC|MC|MN|MS|NT|NL|OC|PL|QT|QR|SP|SL|SR|TC|TS|TL|VZ|YN|ZS|NE)[B-DF-HJ-NP-TV-Z]{3}[0-9A-Z]{1}[0-9]{1}$'
+            curp ~ '\w'
         );
 
 ALTER TABLE chofer_persona
     ADD CONSTRAINT ck_chofer_persona_nombres
         CHECK (
-            nombres ~ '.+\w+.+' AND nombres !~ '.+\d+.+'
+            nombres ~ '\w' AND nombres !~ '.+\d+.+'
         );
 
 ALTER TABLE chofer_persona
     ADD CONSTRAINT ck_chofer_persona_apellidos
         CHECK (
-            apellidos ~ '.+\w+.+' AND apellidos !~ '.+\d+.+'
+            apellidos ~ '\w' AND apellidos !~ '.+\d+.+'
         );
 ALTER TABLE chofer_persona
     ADD CONSTRAINT ck_chofer_persona_fecha_nacimiento
@@ -515,7 +515,7 @@ ALTER TABLE chofer_telefono
 ALTER TABLE chofer_fiscal
     ADD CONSTRAINT ck_chofer_fiscal_rfc
         CHECK (
-            rfc ~ '^([A-ZÑ\x26]{3,4}([0-9]{2})(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[A-Z|\d]{3})$'
+            rfc ~ '\w'
         );
 
  ALTER TABLE chofer_fiscal
@@ -530,21 +530,21 @@ ALTER TABLE chofer_fiscal
 ALTER TABLE chofer_ref
     ADD CONSTRAINT ck_chofer_ref_calle
         CHECK (
-            calle ~ '.+\w+.+'
+            calle ~ '\w'
         );
 
 -----CHOFER DIRECCION OK
 ALTER TABLE chofer_direccion
     ADD CONSTRAINT ck_chofer_direccion_delegacion
         CHECK (
-            delegacion ~ '.+\w+.+'
+            delegacion ~ '\w'
             AND delegacion !~ '.+\d+.+'
         );
 
 ALTER TABLE chofer_direccion
     ADD CONSTRAINT ck_chofer_direccion_estado
         CHECK (
-            estado ~ '.+\w+.+'
+            estado ~ '\w'
             AND estado !~ '.+\d+.+'
         );
 
@@ -552,34 +552,34 @@ ALTER TABLE chofer_direccion
 ALTER TABLE automovil_cualidad
     ADD CONSTRAINT ck_automovil_cualidad_placas
         CHECK (
-            placas ~ '.+\w+.+'
+            placas ~ '\w'
             AND placas !~ '.+\d+.+'
         );
 
 ALTER TABLE automovil_cualidad
     ADD CONSTRAINT ck_automovil_cualidad_marca
         CHECK (
-            marca ~ '.+\w+.+'
+            marca ~ '\w'
             AND marca !~ '.+\d+.+'
         );
 
 ALTER TABLE automovil_cualidad
     ADD CONSTRAINT ck_automovil_cualidad_modelo
         CHECK (
-            modelo ~ '.+\w+.+'
+            modelo ~ '\w'
         );
 
 ALTER TABLE automovil_cualidad
     ADD CONSTRAINT ck_automovil_cualidad_anio
         CHECK (
-            anio !~ '.+\d+.+'
-            AND CAST (anio AS NUMERIC) >= 2000
+            anio >= 2000 
+            AND anio <= 2020
         );
 
 ALTER TABLE automovil_cualidad
     ADD CONSTRAINT ck_automovil_cualidad_color
         CHECK (
-            color ~ '.+\w+.+'
+            color ~ '\w'
             AND color !~ '.+\d+.+'
         );
 
@@ -587,14 +587,13 @@ ALTER TABLE automovil_cualidad
 ALTER TABLE automovil_valor
     ADD CONSTRAINT ck_automovil_valor_modelo
         CHECK (
-            modelo ~ '.+\w+.+'
+            modelo ~ '\w'
         );
 
 ALTER TABLE automovil_valor
     ADD CONSTRAINT ck_automovil_valor_anio
         CHECK (
-            anio !~ '.+\d+.+'
-            AND CAST (anio AS NUMERIC) >= 2000
+            CAST (anio AS NUMERIC) >= 2000
         );
 
 ALTER TABLE automovil_valor
