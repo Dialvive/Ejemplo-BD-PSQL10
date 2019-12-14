@@ -35,7 +35,9 @@ BEGIN
 END;
 $placs$
 LANGUAGE plpgsql;
-
+COMMENT ON FUNCTION fn_encontrar_vehiculo (NUMERIC) IS
+'Regresa las placas de un vehículo que cumpla con los requisitos 
+que requiere un servicio.';
 
 --CALCULAR DISTANCIA(LAO,LOO,LAD,LOD) -> DISTANCIA REAL OK
 CREATE FUNCTION fn_calcular_distancia(
@@ -75,6 +77,9 @@ BEGIN
 END;
 $dist$ 
 LANGUAGE plpgsql;
+COMMENT ON FUNCTION fn_calcular_distancia (FLOAT, FLOAT, FLOAT, FLOAT) IS
+'Regresa la distancia lineal expresada en kilómetros sobre un
+ cuerpo esférico utilizando coordenadas geográficas.';
 
 --CALCULAR CANTIDAD(TIEMPO, DISTANCIA, CLASE) -> CANTIDAD MONEY OK
 CREATE FUNCTION fn_calcular_cantidad(
@@ -105,6 +110,8 @@ BEGIN
     RETURN CAST (fare AS REAL);
 END; $mny$
 LANGUAGE plpgsql;
+COMMENT ON FUNCTION fn_calcular_cantidad (TIME, REAL, CHAR) IS
+'Regresa la cantidad a pagar por el usuario que requirió un servicio';
 
 --CALCULAR PUNTOS(DISTANCIA, CANTIDAD) -> PUNTOS NUMERIC OK
 CREATE FUNCTION fn_calcular_puntos(
@@ -118,6 +125,9 @@ BEGIN
     RETURN pts;
 END; $pnt$
 LANGUAGE plpgsql;
+COMMENT ON FUNCTION fn_calcular_puntos (REAL, MONEY) IS
+'Regresa la cantidad de puntos generados con el servicio por
+ser abonados a la tarjeta del usuario.';
 
 --CALCULAR DEPRECIACION(PLACAS, DISTANCIA) -> VALOR MONEY OK
 CREATE FUNCTION fn_calcular_depreciacion(
@@ -140,3 +150,7 @@ BEGIN
     RETURN CAST (v AS MONEY);
 END; $mon$
 LANGUAGE plpgsql;
+COMMENT ON FUNCTION fn_calcular_depreciacion (VARCHAR, REAL) IS
+'Regresa la cantidad monetaria por devaluar a un automóvil
+en función de la distancia recorrida.';
+
