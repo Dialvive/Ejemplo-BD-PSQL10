@@ -8,8 +8,11 @@ Se comparte por este medio para los fines que se establecen en la licencia, pero
 ## Estílo de Código
 Estandar PSQL
 
-## Screenshots
-Include logo/demo screenshot etc.
+## Documentación sobre diseño y normalización
+Consulte: [Documentación](https://github.com/Dialvive/Ejemplo-BD-PSQL10/tree/master/Entrega/DOC)
+
+## Diagrama
+![Diagrama relacional de tablas](https://github.com/Dialvive/Ejemplo-BD-PSQL10/blob/master/DOC/normalizacion/RN.png?raw=true)
 
 ## Tecnologías
 - [PSQL 10](https://www.postgresql.org/download/)
